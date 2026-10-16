@@ -187,14 +187,18 @@ class ScoutOrchestrator:
         # Step 7: Database Persistence (Encapsulated)
         run_id: Optional[str] = None
         if self.repository is not None:
-            run_record = {
-                "query": query.strip(),
-                "host_architecture": host_profile.architecture_type,
-                "total_candidates": len(candidates),
-                "finalists_count": len(scores),
-                "finalists": scores,
-            }
-            run_id = self.repository.save_evaluation_run(run_record)
+            try:
+                run_record = {
+                    "query": query.strip(),
+                    "host_architecture": host_profile.architecture_type,
+                    "total_candidates": len(candidates),
+                    "finalists_count": len(scores),
+                    "finalists": scores,
+                }
+                run_id = self.repository.save_evaluation_run(run_record)
+            except Exception:
+                # If MySQL database is unreachable, proceed gracefully without failing the scout run
+                run_id = None
 
         # Step 8: Visual Report Presentation
         if self.presenter is not None:

@@ -118,7 +118,11 @@ class CLIController:
         )
 
         report = result.report if hasattr(result, "report") else str(result[0])
-        self.stdout.write(report + "\n")
+        try:
+            self.stdout.write(report + "\n")
+        except UnicodeEncodeError:
+            clean_text = report.encode(getattr(self.stdout, "encoding", "ascii") or "ascii", errors="replace").decode(getattr(self.stdout, "encoding", "ascii") or "ascii")
+            self.stdout.write(clean_text + "\n")
         return 0
 
     def _handle_history(self, container: Container) -> int:
