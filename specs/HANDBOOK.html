@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>OSS Architect Scout Handbook</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+  }
+  body {
+    font-family: "Vazirmatn", "Tahoma", "Segoe UI", Arial, sans-serif;
+    color: #1f2937;
+    line-height: 1.7;
+    font-size: 11pt;
+    direction: rtl;
+    text-align: justify;
+    background-color: #ffffff;
+  }
+  h1, h2, h3, h4 {
+    color: #111827;
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 22pt;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+    color: #1e3a8a;
+    text-align: center;
+    margin-top: 0;
+  }
+  .subtitle {
+    text-align: center;
+    color: #4b5563;
+    font-size: 12pt;
+    margin-bottom: 2em;
+  }
+  .badge-container {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 9pt;
+    font-weight: bold;
+    color: white;
+    border-radius: 4px;
+    margin: 0 4px;
+  }
+  .badge-blue { background-color: #2563eb; }
+  .badge-green { background-color: #10b981; }
+  .badge-purple { background-color: #8b5cf6; }
+  .badge-dark { background-color: #374151; }
+
+  h2 {
+    font-size: 15pt;
+    border-right: 4px solid #2563eb;
+    padding-right: 10px;
+    color: #1e40af;
+    background: #f8fafc;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  h3 {
+    font-size: 12pt;
+    color: #1f2937;
+  }
+  p, ul, ol {
+    margin-bottom: 1em;
+  }
+  ul, ol {
+    padding-right: 20px;
+  }
+  li {
+    margin-bottom: 0.4em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #d1d5db;
+    padding: 8px 12px;
+    text-align: right;
+  }
+  th {
+    background-color: #f3f4f6;
+    color: #111827;
+    font-weight: bold;
+  }
+  tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  .callout {
+    border-right: 4px solid;
+    padding: 12px 16px;
+    margin: 1.5em 0;
+    border-radius: 0 6px 6px 0;
+    background-color: #f9fafb;
+    page-break-inside: avoid;
+  }
+  .callout-info { border-color: #3b82f6; background-color: #eff6ff; }
+  .callout-warning { border-color: #f59e0b; background-color: #fffbeb; }
+  .callout-danger { border-color: #ef4444; background-color: #fef2f2; }
+  .callout-title { font-weight: bold; margin-bottom: 4px; }
+  
+  pre, code {
+    font-family: "Consolas", "Courier New", monospace;
+    direction: ltr;
+    text-align: left;
+    font-size: 9pt;
+  }
+  pre {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 1em 0;
+  }
+  p code, li code {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .footer {
+    margin-top: 3em;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+    font-size: 9pt;
+    color: #6b7280;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>راهنمای جامع و معرفی‌نامه رسمی OSS Architect Scout</h1>
+<div class="subtitle">موتور هوشمند ارزیابی، رتبه‌بندی و همرنگ‌سازی مخازن متن‌باز در معماری نرم‌افزار</div>
+
+<div class="badge-container">
+  <span class="badge badge-blue">نسخه: 1.0.0</span>
+  <span class="badge badge-green">تست‌ها: ۳۰۶ پاس‌شده (۱۰۰٪)</span>
+  <span class="badge badge-purple">معماری: Layered Architecture</span>
+  <span class="badge badge-dark">مجوز: MIT</span>
+</div>
+
+<h2>۱. فلسفه وجودی و مأموریت اصلی</h2>
+<p>
+در دوران مدرن توسعه نرم‌افزار و به ویژه در جریان <strong>وایب‌کدینگ (Vibe-Coding)</strong>، بزرگ‌ترین هدررفت زمان مهندسان، <strong>«اختراع دوباره چرخ»</strong> است. توسعه‌دهندگان ساعت‌ها وقت صرف پیاده‌سازی اجزایی می‌کنند که پیش‌تر توسط مجرب‌ترین مهندسان دنیا در پلتفرم گیت‌هاب پیاده‌سازی، تست و تثبیت شده است. از سویی دیگر، کپی کردن کورکورانه کدهای گیت‌هاب به درون پروژه، منشأ اصلی ورود باگ‌های امنیتی، تداخلات معماری و فجایع حقوقی نقض لایسنس است.
+</p>
+<p>
+سیستم <strong>OSS Architect Scout</strong> در نقش یک <strong>دستیار سیستمیک و معمار ارشد متن‌باز</strong> عمل می‌کند تا این فرآیند را از ابتدا تا انتها مکانیزه کند:
+</p>
+<ul>
+  <li>گیت‌هاب را به صورت زنده و با استفاده از API رسمی برای نیازمندی‌های پروژه کاوش می‌کند.</li>
+  <li>کاندیداها را از یک قیف ۳ مرحله‌ای غربالگری پرسرعت عبور می‌دهد تا زمان پاسخ‌دهی به زیر ۱۰ ثانیه برسد.</li>
+  <li>با فیلتر وتوی مطلق، پروژه‌های دارای آسیب‌پذیری‌های بحرانی یا لایسنس‌های ویروسی (مانند AGPL در پروژه‌های تجاری) را فوراً حذف می‌کند.</li>
+  <li>پروژه‌های بازمانده را بر اساس یک ماتریس ۵ فاکتوری متوازن نمره‌دهی می‌کند.</li>
+  <li>کدهای منتخب را به صورت کپسول‌های ماژولار و همراه با DTOها و آداپتورهای اختصاصی استانداردسازی و بسته‌بندی می‌نماید.</li>
+</ul>
+
+<h2>۲. راهنمای فراخوانی و استفاده</h2>
+
+<h3>الف) فراخوانی محاوره‌ای در چت (Antigravity / Cursor / Claude Code)</h3>
+<p>تنها کافی است نیاز فنی خود را در پنجره چت مطرح نمایید:</p>
+<pre>@oss-architect-scout برای پروژه‌ام یک ماژول احراز هویت با JWT در FastAPI نیاز دارم. مخازن برتر گیت‌هاب را ارزیابی و پیشنهاد کن.</pre>
+
+<h3>ب) اجرای خط فرمان (CLI)</h3>
+<pre># ارزیابی مخازن برای احراز هویت
+python -m src.ui.cli_controller --query "jwt authentication fastapi" --path "."
+
+# جستجو با امکان استفاده از کدهای کپی‌لفت (پروژه‌های غیرتجاری)
+python -m src.ui.cli_controller --query "vector search engine" --allow-copyleft
+
+# مشاهده تاریخچه ارزیابی‌های پیشین در دیتابیس
+python -m src.ui.cli_controller --mode history</pre>
+
+<h3>ج) استفاده مستقیم در کدهای پایتون (Programmatic API)</h3>
+<pre>from src.core.container import Container
+
+container = Container()
+orchestrator = container.create_orchestrator()
+
+result = orchestrator.scout(query="task queue redis", project_path=".")
+print(result.report)</pre>
+
+<h2>۳. جریان کارکرد قیف ۳ مرحله‌ای (3-Stage Pruning Funnel)</h2>
+<p>جهت بهینه‌سازی حداکثری سرعت و مصرف توکن‌ها، غربالگری به شیوه آبشاری صورت می‌پذیرد:</p>
+<ol>
+  <li><strong>مرحله ۱ (غربالگری متادیتا و وتوی اولیه - زیر ۲ ثانیه):</strong> حذف مخازن آرشیوشده، بدون لایسنس، دارای مجوز ویروسی یا باگ‌های بحرانی بر مبنای متادیتای سبک API.</li>
+  <li><strong>مرحله ۲ (معاینه فنی عینی و تست‌ها - زیر ۵ ثانیه):</strong> بررسی وجود پوشه‌های تست فعال، سبز بودن بیلد GitHub Actions، کانفیگ‌های لایت و تایپینگ.</li>
+  <li><strong>مرحله ۳ (کالبدشکافی عمیق معماری - زیر ۱۰ ثانیه):</strong> تحلیل ساختار فایل‌های اصلی، تراکم وابستگی‌ها و شاخص چکش‌خواری بر روی ۳ فینالیست نهایی.</li>
+</ol>
+
+<h2>۴. ماتریس امتیازدهی ۵ فاکتوری (Scoring Matrix)</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">معیار ارزیابی</th>
+      <th style="width: 15%;">وزن نهایی</th>
+      <th>شاخص‌ها و مبانی سنجش فنی</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>۱. انطباق معماری و چکش‌خواری</strong></td>
+      <td><strong>۲۵٪</strong></td>
+      <td>قابلیت کپسوله‌سازی ماژولار، سهولت استخراج ورودی/خروجی به صورت DTO، نبود وابستگی به کتابخانه‌های ممنوعه پروژه میزبان و حداقل بودن اصطکاک ریفکتورینگ.</td>
+    </tr>
+    <tr>
+      <td><strong>۲. کیفیت و تمیزی کد</strong></td>
+      <td><strong>۲۵٪</strong></td>
+      <td>سبز بودن بیلد CI/CD، وجود تست‌های واحد معتبر، تایپ‌های صریح و استاندارد، و عدم وجود کدهای درهم‌تنیده.</td>
+    </tr>
+    <tr>
+      <td><strong>۳. سلامت و بازخورد جامعه</strong></td>
+      <td><strong>۲۵٪</strong></td>
+      <td>نرخ بسته‌شدن ایشوها، سرعت پاسخگویی توسعه‌دهندگان به باگ‌ها، تاریخ آخرین کامیت (عدم رهاشدگی پروژه) و پویایی کامیونیتی.</td>
+    </tr>
+    <tr>
+      <td><strong>۴. محبوبیت و اعتبار مخزن</strong></td>
+      <td><strong>۱۵٪</strong></td>
+      <td>تعداد ستاره‌ها (با نرمال‌سازی لگاریتمی جهت جلوگیری از فریب Star Hype)، تعداد فورک‌ها و اعتبار ناشر.</td>
+    </tr>
+    <tr>
+      <td><strong>۵. پاکیزگی وابستگی‌ها و لایسنس</strong></td>
+      <td><strong>۱۰٪</strong></td>
+      <td>سبک بودن درخت پکیج‌های وابسته (عدم تورم node_modules یا venv) و لایسنس‌های تجاری آزاد با محافظت پتنت (Apache 2.0 / MIT).</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-danger">
+  <div class="callout-title">قاعده وتوی مطلق (Hard Veto Gate):</div>
+  پروژه‌هایی که دارای لایسنس‌های ناسازگار با اهداف تجاری (نظیر AGPL یا GPL v3) باشند یا آسیب‌پذیری‌های بحرانی شناخته‌شده (Critical CVE) در آن‌ها گزارش شده باشد، <strong>نمره صفر</strong> دریافت کرده و فوراً از فهرست پیشنهادات حذف می‌شوند.
+</div>
+
+<h2>۵. برتری‌ها و مزایای رقابتی</h2>
+<ul>
+  <li><strong>سرعت فوق‌العاده:</strong> دستیابی به ارزیابی کامل مخازن در بازه زمانی ۸ تا ۱۲ ثانیه.</li>
+  <li><strong>پروتکل ضد تملق (Zero-Sycophancy):**</strong> سیستم از تایید کورکورانه اشتباهات اپراتور پرهیز کرده و عواقب فنی را مستند یادآوری می‌کند، ضمن آنکه تصمیم نهایی با اپراتور است.</li>
+  <li><strong>اصطکاک صفر (Zero-Friction UX):</strong> پرهیز از سؤال‌پیچ کردن مکرر اپراتور؛ ارائه پاسخ یکپارچه بصری با نشان‌های Shields.io، جداول منظم و کادرهای بازشونده.</li>
+  <li><strong>کپسوله‌سازی و استقلال:</strong> کدهای برگزیده مستقیماً رها نمی‌شوند، بلکه با تولید آداپتورهای اختصاصی ایزوله شده و تضمین تعویض‌پذیری در آینده را دارند.</li>
+  <li><strong>توسعه مهندسی‌شده با تست ۱۰۰٪:</strong> عبور موفق از ۳۰۶ تست واحد در تمام لایه‌ها.</li>
+</ul>
+
+<h2>۶. نقاط کور و محدودیت‌های سیستم (Blind Spots)</h2>
+<div class="callout callout-warning">
+  <div class="callout-title">۱. محدودیت نرخ درخواست گیت‌هاب (GitHub API Rate Limits):</div>
+  گیت‌هاب برای درخواست‌های بدون لاگین سقف ۶۰ درخواست در ساعت و با توکن شخصی سقف ۵,۰۰۰ درخواست در ساعت دارد. برای پروژه‌های بزرگ سازمانی ذخیره Personal Access Token در تنظیمات الزامی است.
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-title">۲. ریسک حملات زنجیره تأمین نوظهور (Zero-Day Malicious Packages):</div>
+  فیلترهای امنیتی به پایگاه‌های شناخته‌شده آسیب‌پذیری (مانند CVE و Dependabot) وابسته‌اند. اگر پکیجی ساعاتی پیش هدف تزریق کد مخرب قرار گرفته باشد و هنوز در پایگاه‌ها ثبت نشده باشد، با اسکن متادیتا قابل شناسایی نیست و نیازمند بررسی در یک Sandbox امنیتی است.
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-title">۳. چالش مونو‌ریپوها (Monorepos):</div>
+  در پروژه‌های بزرگی که ده‌ها پکیج مستقل درون پوشه packages/ دارند، کانفیگ‌های تست و متادیتای گیت‌هاب برای کل مخزن ثبت شده است. اسکیل ممکن است در سنجش یک زیرپکیج خاص، دچار تقریب در نمره تمیزی کد شود.
+</div>
+
+<div class="callout callout-warning">
+  <div class="callout-title">۴. لایسنس‌های تو‌در‌تو و وابستگی‌های گذرا (Transitive Dependencies):</div>
+  گاهی مخزنی لایسنس رسمی MIT دارد، اما درون درخت وابستگی‌های خود از کتابخانه‌ای با لایسنس AGPL استفاده کرده است. اسکیل لایسنس رسمی سطح مخزن را بررسی می‌کند و کشف لایسنس‌های گذرا نیازمند ایجاد فایل جامع SBOM است.
+</div>
+
+<div class="footer">
+  گزارش رسمی OSS Architect Scout | نگارش 1.0.0 | ثبت شده در مخزن رسمی گیت‌هاب Armin-MA/oss-architect-scout
+</div>
+
+</body>
+</html>
