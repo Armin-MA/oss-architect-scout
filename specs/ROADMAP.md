@@ -81,7 +81,7 @@ flowchart TD
 - [x] **Milestone 0:** Git Initialized & GitHub Remote Connected (`Armin-MA/oss-architect-scout`)
 - [x] **Milestone 1:** Scope & PRD Finalized (`specs/PRD.md` & `specs/ROADMAP.md` at Gate 1)
 - [x] **Milestone 2:** Architecture & Contracts Locked (`specs/ARCHITECTURE.md` at Gate 2)
-- [ ] **Milestone 3:** WBS, Zero-Context Tasks & GitHub Issues Synced (`specs/WBS.md` at Gate 3)
+- [x] **Milestone 3:** WBS, Zero-Context Tasks & GitHub Issues Synced (`specs/WBS.md` at Gate 3)
 - [ ] **Milestone 4:** Gated Implementation & Verification (`START_IMPLEMENTATION`)
   - [ ] Layer 1: Contracts & Config
   - [ ] Layer 2: Entities & Utils
