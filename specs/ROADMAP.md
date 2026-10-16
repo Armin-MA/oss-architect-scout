@@ -52,15 +52,15 @@ flowchart TD
     end
 
     subgraph Phase1["Phase 1: PRD & Visual Mind Map"]
-        P1["PRD & ROADMAP Creation"]:::active
+        P1["PRD & ROADMAP Creation"]:::done
     end
 
     subgraph Phase2["Phase 2: Architecture & Contracts"]
-        P2["Layered Contracts & Schema Design"]:::pending
+        P2["Layered Contracts & Schema Design"]:::done
     end
 
     subgraph Phase3["Phase 3: WBS & Zero-Context Tasks"]
-        P3["Task Breakdown & GitHub Issues Sync"]:::pending
+        P3["Task Breakdown & GitHub Issues Sync"]:::active
     end
 
     subgraph Phase4["Phase 4: Implementation"]
@@ -79,8 +79,8 @@ flowchart TD
 ## 3. High-Level Milestone Progress
 
 - [x] **Milestone 0:** Git Initialized & GitHub Remote Connected (`Armin-MA/oss-architect-scout`)
-- [ ] **Milestone 1:** Scope & PRD Finalized (`specs/PRD.md` & `specs/ROADMAP.md` at Gate 1)
-- [ ] **Milestone 2:** Architecture & Contracts Locked (`specs/ARCHITECTURE.md` at Gate 2)
+- [x] **Milestone 1:** Scope & PRD Finalized (`specs/PRD.md` & `specs/ROADMAP.md` at Gate 1)
+- [x] **Milestone 2:** Architecture & Contracts Locked (`specs/ARCHITECTURE.md` at Gate 2)
 - [ ] **Milestone 3:** WBS, Zero-Context Tasks & GitHub Issues Synced (`specs/WBS.md` at Gate 3)
 - [ ] **Milestone 4:** Gated Implementation & Verification (`START_IMPLEMENTATION`)
   - [ ] Layer 1: Contracts & Config
