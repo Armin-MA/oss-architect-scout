@@ -8,14 +8,9 @@ if TYPE_CHECKING:
     from src.entities.evaluation_score import EvaluationScore
     from src.database.dto.evaluation_record_dto import EvaluationRecordDTO
 else:
-    try:
-        from src.entities.evaluation_score import EvaluationScore
-    except ImportError:
-        EvaluationScore = Any  # type: ignore
-    try:
-        from src.database.dto.evaluation_record_dto import EvaluationRecordDTO
-    except ImportError:
-        EvaluationRecordDTO = Any  # type: ignore
+    EvaluationScore = Any  # type: ignore
+    EvaluationRecordDTO = Any  # type: ignore
+
 
 
 class IScoutRepository(ABC):
